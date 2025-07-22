@@ -25,12 +25,32 @@ showroomController.getLogin = (req: Request, res: Response) => {
     }
 };
 
+showroomController.processLogin = (req: Request, res: Response) => {
+    try {
+        console.log("processLogin");
+        res.send("DONE!");
+    } catch (err) {
+        console.log("Error, processLogin:", err);
+        
+    }
+};
+
 showroomController.getSignup = (req: Request, res: Response) => {
     try {
         console.log("getSignup");
         res.send("Signup Page");
     } catch (err) {
         console.log("Error, goHome:", err);
+        
+    }
+};
+
+showroomController.processSignup = (req: Request, res: Response) => {
+    try {
+        console.log("processSignup");
+        res.send("DONE!");
+    } catch (err) {
+        console.log("Error, processSignup:", err);
         
     }
 };

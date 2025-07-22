@@ -5,8 +5,12 @@ import showroomController from "./controllers/showroom.controller";
 
 routerAdmin.get("/", showroomController.goHome);
 
-routerAdmin.get("/login", showroomController.getLogin);
+routerAdmin
+    .get("/login", showroomController.getLogin)
+    .post("/login", showroomController.processLogin);
 
-routerAdmin.get("/signup", showroomController.getSignup);
+routerAdmin
+    .get("/signup", showroomController.getSignup)
+    .post("/signup", showroomController.processSignup);
 
 export default routerAdmin;
