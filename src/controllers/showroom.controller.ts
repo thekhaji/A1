@@ -1,8 +1,11 @@
 import { T } from "../libs/types/common";
 import {Request, Response} from "express";
 import MemberService from "../models/Member.service";
+import { MemberInput } from "../libs/types/member";
+import { MemberType } from "../libs/enums/member.enum";
 
 const showroomController: T = {};
+const memberService = new MemberService();
 
 showroomController.goHome = (req: Request, res: Response) => {
     try {
@@ -45,13 +48,16 @@ showroomController.getSignup = (req: Request, res: Response) => {
     }
 };
 
-showroomController.processSignup = (req: Request, res: Response) => {
+showroomController.processSignup = async (req: Request, res: Response) => {
     try {
         console.log("processSignup");
-        res.send("DONE!");
+        const newMember: MemberInput = req.body;
+        newMember.memberType = MemberType.SHOWROOM;
+        const result = await memberService.processSignup(newMember);
+        res.send(result);
     } catch (err) {
         console.log("Error, processSignup:", err);
-        
+        res.send(err);
     }
 };
 
