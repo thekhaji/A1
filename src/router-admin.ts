@@ -13,4 +13,6 @@ routerAdmin
     .get("/signup", showroomController.getSignup)
     .post("/signup", showroomController.processSignup);
 
+routerAdmin.get("/logout", showroomController.logout);
+
 export default routerAdmin;
