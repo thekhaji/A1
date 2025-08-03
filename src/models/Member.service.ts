@@ -11,6 +11,9 @@ class MemberService{
     constructor(){
         this.memberModel = MemberModel;
     }
+    // SPA //
+
+    // BSSR //
 
     public async processSignup(input: MemberInput): Promise<Member>{
         const exist = await this.memberModel.findOne({memberType: MemberType.SHOWROOM}).exec();
