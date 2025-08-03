@@ -11,17 +11,40 @@ showroomController.goHome = (req: Request, res: Response) => {
     try {
         console.log("goHome");
         
-        res.send("Home Page");
+        res.render("home");
     } catch (err) {
         console.log("Error, goHome:", err);
         
     }
 };
 
+showroomController.getSignup = (req: Request, res: Response) => {
+    try {
+        console.log("getSignup");
+        res.render("signup");
+    } catch (err) {
+        console.log("Error, goHome:", err);
+        
+    }
+};
+
+showroomController.processSignup = async (req: Request, res: Response) => {
+    try {
+        console.log("processSignup");
+        const newMember: MemberInput = req.body;
+        newMember.memberType = MemberType.SHOWROOM;
+        const result = await memberService.processSignup(newMember);
+        res.send(result);
+    } catch (err) {
+        console.log("Error, processSignup:", err);
+        res.send(err);
+    }
+};
+
 showroomController.getLogin = (req: Request, res: Response) => {
     try {
         console.log("getLogin");
-        res.send("Login Page");
+        res.render("login");
     } catch (err) {
         console.log("Error, goHome:", err);
         
@@ -38,29 +61,6 @@ showroomController.processLogin = async (req: Request, res: Response) => {
         res.send(result);
     } catch (err) {
         console.log("Error, processLogin:", err);
-        res.send(err);
-    }
-};
-
-showroomController.getSignup = (req: Request, res: Response) => {
-    try {
-        console.log("getSignup");
-        res.send("Signup Page");
-    } catch (err) {
-        console.log("Error, goHome:", err);
-        
-    }
-};
-
-showroomController.processSignup = async (req: Request, res: Response) => {
-    try {
-        console.log("processSignup");
-        const newMember: MemberInput = req.body;
-        newMember.memberType = MemberType.SHOWROOM;
-        const result = await memberService.processSignup(newMember);
-        res.send(result);
-    } catch (err) {
-        console.log("Error, processSignup:", err);
         res.send(err);
     }
 };
